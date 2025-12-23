@@ -101,3 +101,33 @@ const observerOptions = {
                 header.style.boxShadow = '0 2px 5px rgba(0,0,0,0.1)';
             }
         });
+
+// ----- HAMBURGER MENU -------
+const hamburger = document.querySelector('.hamburger');
+const navItems = document.querySelector('.nav-items');
+const navLinks = document.querySelectorAll('.nav-item');
+
+hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    navItems.classList.toggle('active');
+    document.body.style.overflow = navItems.classList.contains('active') ? 'hidden' : '';
+});
+
+// Close menu when clicking on a nav link
+navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        navItems.classList.remove('active');
+        document.body.style.overflow = '';
+    });
+});
+
+// Close menu when clicking outside
+document.addEventListener('click', (e) => {
+    if (!hamburger.contains(e.target) && !navItems.contains(e.target)) {
+        hamburger.classList.remove('active');
+        navItems.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+});
+// ----- HAMBURGER MENU -------
